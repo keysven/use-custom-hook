@@ -45,7 +45,7 @@ export const Counter = () => {
   })
   return (
     <div>
-      <div className="text-[30px] text-blue-950">Counter: {counter}</div>
+      <div className="text-[30px] text-blue-950" ><span data-testId = {'counter-value'}>Counter: {counter}</span></div>
       <div className="flex flex-row justify-center">
         <Button
           onClick={() => {

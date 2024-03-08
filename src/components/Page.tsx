@@ -129,7 +129,7 @@ const Page: FC = () => {
 
   return (
     <div>
-      <div className="flex justify-center pt-28 ">
+      <div className="flex justify-center pt-10 ">
         <div className="w-[860px] h-[530px] relative">
           <img
             src={currentPage.imageUrl}
