@@ -77,10 +77,36 @@ describe('validation component', () => {
             expect(tel('incorrect-phone')).toBe(false);
         });
     });
-    describe('kana', () => {
-        
-    });
     describe('password', () => {
+        const validatePassword = (v:any) => {
+            if (v && v.length >= 8 && v.length <= 32) {
+                return /^(?=.*?[a-zA-Z])(?=.*?\d)[a-zA-Z\d]{8,32}$/.test(v) || 'パスワードは半角英数字をそれぞれ1種類以上含む、8文字以上32文字以内で指定したください';
+            } else {
+                return 'パスワードは8文字以上32文字以内で指定したください';
+            }
+        } 
+        test('should return for a valid password', () => {
+            expect(validatePassword('abcd1234')).toBe(true);
+            expect(validatePassword('password1')).toBe(true);
+        });
+        test('should fail for passwords shorter than 8 characters', () => {
+            expect(validatePassword('abc123')).toBe('パスワードは8文字以上32文字以内で指定したください');
+        });
+        test('should fail for passwords longer than 32 characters', () => {
+            expect(validatePassword('a'.repeat(33))).toBe('パスワードは8文字以上32文字以内で指定したください');
+        });
+        test('should fail for passwords without digits', () => {
+            expect(validatePassword('abcdefgh')).toBe('パスワードは半角英数字をそれぞれ1種類以上含む、8文字以上32文字以内で指定したください');
+        });
+        test('should fail for passwords without letters', () => {
+            expect(validatePassword('12345678')).toBe('パスワードは半角英数字をそれぞれ1種類以上含む、8文字以上32文字以内で指定したください');
+        });
+    
+        test('should fail for empty or undefined input', () => {
+            expect(validatePassword('')).toBe('パスワードは8文字以上32文字以内で指定したください');
+        });
+    });
+    describe('kana', () => {
         const kana = (v:any) => {
             return /^[ァ-ヶー　 ]*$/.test(v) || 'カタカナとスペースのみ入力可能です。';
         }
