@@ -3,7 +3,7 @@ import { CSSProperties } from "react";
 import { Button } from "antd";
 import {usePagingState} from "../hooks/usePagingState";
 import {BookData} from "../Data/BookData";
-
+import { Counter } from "./Counter";
 
 
 
@@ -146,6 +146,7 @@ const Page: FC = () => {
           {autoPaging ? "Stop Auto Paging" : "Start Auto Paging"}
         </Button>
       </div>
+      <Counter />
     </div>
   );
 };
